@@ -19,7 +19,7 @@ public class TrafficLightAgent extends Agent {
 
     @Override
     protected void setup() {
-        // Get arguments (intersection ID, x, y coordinates)
+        
         Object[] args = getArguments();
         if (args != null && args.length >= 3) {
             String intersectionId = (String) args[0];
@@ -35,10 +35,10 @@ public class TrafficLightAgent extends Agent {
             return;
         }
 
-        // Register service
+        
         registerService();
 
-        // Add behaviours
+      
         addBehaviour(new TrafficLightBehaviour(this, intersectionData));
         addBehaviour(new ReceiveMessageBehaviour());
     }
@@ -72,7 +72,6 @@ public class TrafficLightAgent extends Agent {
         return intersectionData;
     }
 
-    // Inner class for handling messages
     private class ReceiveMessageBehaviour extends CyclicBehaviour {
         @Override
         public void action() {
@@ -94,7 +93,7 @@ public class TrafficLightAgent extends Agent {
                     }
                     break;
                 case ACLMessage.INFORM:
-                    // Handle status updates from other agents
+                    
                     break;
             }
         }
