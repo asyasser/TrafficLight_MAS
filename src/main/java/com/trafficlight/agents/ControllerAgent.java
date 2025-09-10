@@ -26,17 +26,13 @@ public class ControllerAgent extends Agent {
 
         System.out.println("Controller Agent ready - monitoring traffic system");
 
-        // Register service
         registerService();
-
-        // Initialize GUI
         javax.swing.SwingUtilities.invokeLater(() -> {
             gui = new TrafficLightGUI(this);
             gui.setVisible(true);
         });
 
-        // Add behaviours
-        addBehaviour(new MonitoringBehaviour(this, 2000)); // Monitor every 2 seconds
+        addBehaviour(new MonitoringBehaviour(this, 2000));
         addBehaviour(new ReceiveMessageBehaviour());
     }
 
@@ -81,7 +77,7 @@ public class ControllerAgent extends Agent {
         }
     }
 
-    // Inner class for handling messages
+
     private class ReceiveMessageBehaviour extends CyclicBehaviour {
         @Override
         public void action() {
@@ -117,7 +113,7 @@ public class ControllerAgent extends Agent {
                     break;
                 case ACLMessage.REQUEST:
                     System.out.println("ControllerAgent: Processing REQUEST message");
-                    // Handle requests from other agents
+                    
                     break;
                 default:
                     System.out.println("ControllerAgent: Unknown message type: " + msg.getPerformative());
@@ -128,7 +124,7 @@ public class ControllerAgent extends Agent {
             String sender = msg.getSender().getLocalName();
             String content = msg.getContent();
 
-            // Debug output
+            
             System.out.println("ControllerAgent received status update from: " + sender);
             System.out.println("Message content: " + content);
 
