@@ -16,7 +16,7 @@ public class TrafficLightGUI extends JFrame {
     private JTextArea statusArea;
     private JLabel systemStatsLabel;
 
-    // Control buttons
+   
     private JButton addVehicleButton;
     private JButton removeVehicleButton;
     private JButton pauseButton;
@@ -34,7 +34,6 @@ public class TrafficLightGUI extends JFrame {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Handle window closing
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -153,20 +152,19 @@ public class TrafficLightGUI extends JFrame {
                     component, status);
             updateStatusArea(message);
 
-            // Parse status updates for visual updates
             parseStatusUpdate(component, status);
         });
     }
 
     private void parseStatusUpdate(String component, String status) {
-        // Debug: print what we receive
+     
         System.out.println("GUI received - Component: " + component + ", Status: " + status);
 
         String[] parts = status.split(":");
 
         if (parts.length >= 3 && parts[0].equals("STATUS_UPDATE")) {
             if (component.startsWith("TL")) {
-                // Traffic light update: STATUS_UPDATE:TL1:GREEN:2
+                
                 if (parts.length >= 3) {
                     String lightId = parts[1];
                     String state = parts[2];
@@ -179,7 +177,7 @@ public class TrafficLightGUI extends JFrame {
                     }
                 }
             } else if (component.startsWith("V")) {
-                // Vehicle update: STATUS_UPDATE:V1:3:4:EAST:false
+              
                 if (parts.length >= 6) {
                     String vehicleId = parts[1];
                     try {
@@ -201,7 +199,7 @@ public class TrafficLightGUI extends JFrame {
         statusArea.append(message);
         statusArea.setCaretPosition(statusArea.getDocument().getLength());
 
-        // Limit status area to last 100 lines
+        
         String text = statusArea.getText();
         String[] lines = text.split("\n");
         if (lines.length > 100) {
@@ -237,7 +235,7 @@ public class TrafficLightGUI extends JFrame {
             String direction = (String) directionBox.getSelectedItem();
 
             updateStatusArea("Creating new vehicle: " + id + " at (" + x + "," + y + ") heading " + direction + "\n");
-            // Here you would create a new VehicleAgent
+          
         }
     }
 
@@ -270,7 +268,7 @@ public class TrafficLightGUI extends JFrame {
 
         if (option == JOptionPane.YES_OPTION) {
             updateStatusArea("System reset initiated...\n");
-            // Here you would reset all agents and states
+            
             intersectionPanel.repaint();
         }
     }
