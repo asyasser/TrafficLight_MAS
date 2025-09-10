@@ -18,7 +18,7 @@ public class VehicleAgent extends Agent {
 
     @Override
     protected void setup() {
-        // Get arguments (vehicle ID, x, y, direction)
+        
         Object[] args = getArguments();
         if (args != null && args.length >= 4) {
             String vehicleId = (String) args[0];
@@ -35,10 +35,10 @@ public class VehicleAgent extends Agent {
             return;
         }
 
-        // Register service
+        
         registerService();
 
-        // Add behaviours
+       
         addBehaviour(new VehicleBehaviour(this, vehicleState));
         addBehaviour(new ReceiveMessageBehaviour());
     }
@@ -72,7 +72,7 @@ public class VehicleAgent extends Agent {
         return vehicleState;
     }
 
-    // Inner class for handling messages
+  
     private class ReceiveMessageBehaviour extends CyclicBehaviour {
         @Override
         public void action() {
@@ -99,7 +99,7 @@ public class VehicleAgent extends Agent {
                     }
                     break;
                 case ACLMessage.INFORM:
-                    // Handle status updates
+                   
                     break;
             }
         }
@@ -107,7 +107,7 @@ public class VehicleAgent extends Agent {
         private void handlePassageGranted() {
             System.out.println("Vehicle " + vehicleState.getVehicleId() + " received passage permission");
             vehicleState.setWaitingAtLight(false);
-            // Continue movement logic here
+            
         }
 
         private void handlePassageDenied() {
