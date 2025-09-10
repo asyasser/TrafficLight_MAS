@@ -17,7 +17,7 @@ public class TrafficLightBehaviour extends TickerBehaviour {
     private long stateStartTime;
 
     public TrafficLightBehaviour(Agent agent, IntersectionData intersectionData) {
-        super(agent, 1000); // Check every second
+        super(agent, 1000); 
         this.intersectionData = intersectionData;
         this.stateStartTime = System.currentTimeMillis();
     }
@@ -29,7 +29,7 @@ public class TrafficLightBehaviour extends TickerBehaviour {
 
         TrafficLightState currentState = intersectionData.getCurrentState();
 
-        // Check if it's time to change state
+        
         if (elapsedTime >= currentState.getDuration()) {
             changeToNextState();
             stateStartTime = currentTime;
@@ -50,7 +50,7 @@ public class TrafficLightBehaviour extends TickerBehaviour {
     private void sendStatusUpdate() {
         System.out.println("TrafficLight " + intersectionData.getIntersectionId() + " trying to send status update...");
 
-        // Send status to controller agent
+        
         try {
             DFAgentDescription template = new DFAgentDescription();
             ServiceDescription sd = new ServiceDescription();
