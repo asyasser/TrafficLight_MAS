@@ -16,10 +16,10 @@ import java.util.Random;
 public class VehicleBehaviour extends TickerBehaviour {
     private VehicleState vehicleState;
     private Random random;
-    private int moveSpeed = 1; // squares per tick
+    private int moveSpeed = 1; 
 
     public VehicleBehaviour(Agent agent, VehicleState vehicleState) {
-        super(agent, 2000); // Move every 2 seconds
+        super(agent, 2000); 
         this.vehicleState = vehicleState;
         this.random = new Random();
     }
@@ -52,7 +52,7 @@ public class VehicleBehaviour extends TickerBehaviour {
                 break;
         }
 
-        // Simple boundary check - turn around if out of bounds
+        
         if (vehicleState.getCurrentX() < 0 || vehicleState.getCurrentX() > 10 ||
                 vehicleState.getCurrentY() < 0 || vehicleState.getCurrentY() > 10) {
             turnAround();
@@ -92,18 +92,18 @@ public class VehicleBehaviour extends TickerBehaviour {
     }
 
     private void checkForTrafficLight() {
-        // Check if vehicle is approaching an intersection (simplified logic)
+        
         if (isAtIntersection()) {
             requestPassage();
         }
     }
 
     private boolean isAtIntersection() {
-        // Simple intersection detection - assume intersections at grid points
+        
         int x = vehicleState.getCurrentX();
         int y = vehicleState.getCurrentY();
 
-        // Intersections at every 3rd grid point
+        
         return (x % 3 == 0 && y % 3 == 0);
     }
 
@@ -116,7 +116,7 @@ public class VehicleBehaviour extends TickerBehaviour {
 
             DFAgentDescription[] result = DFService.search(myAgent, template);
 
-            // Find nearest traffic light (simplified - just pick first one for now)
+            
             if (result.length > 0) {
                 ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
                 msg.addReceiver(result[0].getName());
