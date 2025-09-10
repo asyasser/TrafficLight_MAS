@@ -11,21 +11,21 @@ public class TrafficLightMain {
 
     public static void main(String[] args) {
         try {
-            // Get JADE runtime
+            
             Runtime rt = Runtime.instance();
 
-            // Create a profile for the main container
+            
             Profile profile = new ProfileImpl();
             profile.setParameter(Profile.MAIN_HOST, "localhost");
             profile.setParameter(Profile.MAIN_PORT, "1099");
-            profile.setParameter(Profile.GUI, "true"); // Show JADE GUI
+            profile.setParameter(Profile.GUI, "true"); 
 
-            // Create the main container
+            
             AgentContainer mainContainer = rt.createMainContainer(profile);
 
             System.out.println("Starting Traffic Light Multi-Agent System...");
 
-            // Create and start the Controller Agent
+            
             AgentController controllerAgent = mainContainer.createNewAgent(
                     "ControllerAgent",
                     "com.trafficlight.agents.ControllerAgent",
@@ -33,16 +33,16 @@ public class TrafficLightMain {
             );
             controllerAgent.start();
 
-            // Create Traffic Light Agents at different intersections
+            
             createTrafficLightAgent(mainContainer, "TL1", 3, 3);
             createTrafficLightAgent(mainContainer, "TL2", 6, 3);
             createTrafficLightAgent(mainContainer, "TL3", 3, 6);
             createTrafficLightAgent(mainContainer, "TL4", 6, 6);
 
-            // Wait a bit for traffic lights to initialize
+            
             Thread.sleep(2000);
 
-            // Create some initial vehicles
+            
             createVehicleAgent(mainContainer, "V1", 0, 3, "EAST");
             createVehicleAgent(mainContainer, "V2", 3, 0, "SOUTH");
             createVehicleAgent(mainContainer, "V3", 9, 6, "WEST");
